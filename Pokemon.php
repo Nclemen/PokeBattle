@@ -39,7 +39,7 @@ class Pokemon {
   public static $population = 0;
 
   protected static $pokemonPc = [];
-  
+
 
   public function __construct($name, $energytype, $hitpoints, $attacks, $weakness, $resistance){
     $this->name = $name;
@@ -134,7 +134,7 @@ public function attack($target, $attack){
     $pokemon = $this;
 
     print_r($this->battleLog($target->getName()));
-    
+
     print_r('<pre>' . $target->getName() . "</br>" . $target->getHealth() . '</pre>');
     $target->dmgTkn($attack,$pokemon->getEnergytype());
     if ($target->getHealth() <= 0){
@@ -168,7 +168,7 @@ public static function getPopulationHealth(){
             	$average = $average + $hp;
         }
     }
-    return $average;
+    print_r("the average population health is :" . $average / self::$population . "</br>");
 }
 
 }

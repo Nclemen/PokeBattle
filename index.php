@@ -30,21 +30,12 @@ $pikachu = new Pokemon(
  [
     'Lightning' =>20
  ]);
-// var_dump($pikachu);
-// print_r('<pre>' . $charmeleon->getEnergytype() . "</br> " . $charmeleon->getAtt('Flare') . "</br> " . $charmeleon->getAllAtt() . '</pre>');
-// print_r('<pre>' . $pikachu . '</pre>');
-// print_r('<pre>' . $pikachu . '</pre>');
-// print_r($pikachu->dmgTkn(15, 'Water'));
-// print_r('<pre>' . $pikachu->getName() . "</br>" . $pikachu->getHealth() . '</pre>');
+
+Pokemon::getPopulationHealth();
 $pikachu->attack($charmeleon, $pikachu->getAtt('Electric Ring'));
+Pokemon::getPopulationHealth();
 $charmeleon->attack($pikachu, $charmeleon->getAtt('Flare'));
-// print_r(Pokemon::getPopulation());
-
-// print_r(Pokemon::getPokemonPc());
-
+Pokemon::getPopulationHealth();
 $charmeleon->attack($pikachu, $charmeleon->getAtt('Flare'));
-
-print_r(Pokemon::getPopulationHealth());
-
-// print_r(Pokemon::getPokemonPc());
-// print_r(Pokemon::getPopulation());
+Pokemon::getPopulationHealth();
+// print_r(Pokemon::getPopulationHealth());
