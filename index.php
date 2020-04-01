@@ -31,11 +31,29 @@ $pikachu = new Pokemon(
     'Lightning' =>20
  ]);
 
-Pokemon::getPopulationHealth();
-$pikachu->attack($charmeleon, $pikachu->getAtt('Electric Ring'));
-Pokemon::getPopulationHealth();
-$charmeleon->attack($pikachu, $charmeleon->getAtt('Flare'));
-Pokemon::getPopulationHealth();
-$charmeleon->attack($pikachu, $charmeleon->getAtt('Flare'));
-Pokemon::getPopulationHealth();
-// print_r(Pokemon::getPopulationHealth());
+// Pokemon::getPopulationHealth();
+// $pikachu->attack($charmeleon, $pikachu->getAtt('Electric Ring'));
+// Pokemon::getPopulationHealth();
+// $charmeleon->attack($pikachu, $charmeleon->getAtt('Flare'));
+// Pokemon::getPopulationHealth();
+// $charmeleon->attack($pikachu, $charmeleon->getAtt('Flare'));
+// Pokemon::getPopulationHealth();
+Pokemon::addToPokebag($pikachu);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::getPokebag();
+Pokemon::emptyPokebag();
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::addToPokebag($charmeleon);
+Pokemon::getPokebag();
+// Pokemon::getFromPokebag('charmeleon');
+// Pokemon::getPokebag();
+// print_r($pikachu);
