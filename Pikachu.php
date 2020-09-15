@@ -8,12 +8,16 @@
 class pikachu extends Pokemon
 {
 
-  function __construct($name)
+  public function __construct($name)
   {
     $this->setName($name);
-    $this->energytype = 'electric';
-    $this->hitpoints = 60;
-    $this->attacks = ;
+    $this->setEnergytype('electric');
+    $this->setHitpoints(60);
+    $this->setAttacks(['Electric Ring'=>50,
+                      'Pika Punch'=>20]);
+    $this->setWeakness(['Fire'=>1.5]);
+    $this->setResistance(['Fighting'=>20]);
+
   }
 }
 
