@@ -3,6 +3,7 @@ require 'Pokemon.php';
 require 'Pikachu.php';
 
 
+<<<<<<< HEAD
  $pikachu = new pikachu('Pikachu');
 
 <<<<<<< HEAD
@@ -34,6 +35,12 @@ Pokemon::getPokebag();
 // print_r($pikachu);
 =======
  $pikachu->getName();
+=======
+ $pikachu = new pikachu('chuchu');
+>>>>>>> master
 
+ // $pikachu->foo();
+ // $henk = 10;
+ echo '<pre>' . print_r($pikachu, true);
  ?>
 >>>>>>> master
