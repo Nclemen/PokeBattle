@@ -1,8 +1,6 @@
 <?php
 namespace base;
-/**
- *
- */
+
 class Attack
 {
 
@@ -20,10 +18,10 @@ class Attack
       */
     private $damage;
 
-    function __construct($name, $damage)
+    function __construct($attackData)
     {
-      $this->name = $name;
-      $this->damage = $damage;
+      $this->name = $attackData['name'];
+      $this->damage = $attackData['damage'];
     }
 
     /**

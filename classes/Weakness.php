@@ -6,22 +6,22 @@ namespace base;
 class Weakness
 {
   /**
-    * the name of the attack
+    * the energytype that the pokemon is weak to
     *
     * @var object
     */
   private $energytype;
 
   /**
-    * the name of the attack
+    * the amount of time the attack that hits the pokemon get multiplied if it is at an energytype disadvantage
     *
     * @var int
     */
   private $multiplier;
 
-  function __construct($energyname, $multiplier)
+  function __construct($name, $multiplier)
   {
-    $this->energytype = new Energytype($energyname);
+    $this->energytype = new Energytype($name);
     $this->multiplier = $multiplier;
   }
 
