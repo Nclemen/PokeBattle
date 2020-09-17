@@ -63,6 +63,13 @@ class Pokemon
       // $this->energytype = new Energytype();
       // $this->hitpoints = $hitpoints;
       // code ...
+
+      foreach ()
+
+    }
+
+    public function attackPokemon($target, $attack){
+
     }
 
     /**
@@ -164,11 +171,11 @@ class Pokemon
     /**
      * Set the value of list of pokemons attacks
      *
-     * @param array $attacks
+     * @param object $attacks
      *
      * @return self
      */
-    public function setAttacks(array $attacks)
+    public function setAttacks(object $attacks)
     {
 
       foreach($attacks as $key=>$attack) {
