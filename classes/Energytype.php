@@ -1,4 +1,5 @@
 <?php
+namespace base;
 
 class Energytype
 {
@@ -15,12 +16,12 @@ class Energytype
     *
     * @var int
     */
-  private $value
+  private $value;
 
-  function __construct($name, $value)
+  function __construct($name)
   {
     $this->name = $name;
-    $this->value = $value;
+    // $this->value = $value;
   }
 
   /**
@@ -35,10 +36,14 @@ class Energytype
   /**
     * function to set damage
     *
-    * @var string
+    * @var string $name
+    *
+    * @return self
     */
   public function setName($name){
     $this->name = $name;
+
+    return $this;
   }
 
   /**
@@ -46,19 +51,20 @@ class Energytype
     *
     * @return int
     */
-  public function getDamage(){
+  public function getValue(){
     return $this->damage;
   }
 
   /**
     * function to set damage
     *
-    * @var int
+    * @var int $value
+    *
+    * @return self
     */
-  public function setDamage($damage){
-    $this->damage = $damage;
+  public function setValue($value){
+    $this->value = $value;
+
+    return $this;
   }
 }
-
-
- ?>

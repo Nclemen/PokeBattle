@@ -1,6 +1,10 @@
 <?php
+namespace base;
 
-use '';
+require 'Energytype.php';
+require 'Attack.php';
+require 'Weakness.php';
+require 'Resistance.php';
 
 class Pokemon
 {
@@ -14,7 +18,7 @@ class Pokemon
     /**
      * the pokemons energytype
      *
-     * @var object
+     * @var
      */
     private $energytype;
 
@@ -37,27 +41,28 @@ class Pokemon
      *
      * @var array
      */
-    private $attacks = [];
+    private $attacks;
 
     /**
-     * list of the energytypes which the pokemon is weak to
+     * energytypes which the pokemon is weak to
      *
-     * @var array
+     * @var
      */
     private $weakness;
 
     /**
-     * list of the energytypes which the pokemon is resistant to
+     * energytypes which the pokemon is resistant to
      *
-     * @var array
+     * @var
      */
     private $resistance;
 
-    public function __construct($name)
+    public function __construct()
     {
-      $this->name = $name;
-      $this->energytype = new Energytype();
-      $this->hitpoints = $hitpoints;
+      // $this->name = $name;
+      // $this->energytype = new Energytype();
+      // $this->hitpoints = $hitpoints;
+      // code ...
     }
 
     /**
@@ -87,13 +92,13 @@ class Pokemon
     /**
      * Set the value of the pokemons energytype
      *
-     * @param string $energytype
+     * @param mixed $energytype
      *
      * @return self
      */
     public function setEnergytype($energytype)
     {
-        $this->energytype = new Energytype();
+        $this->energytype = new Energytype($energytype);
 
         return $this;
     }
@@ -101,7 +106,7 @@ class Pokemon
     /**
      * Get the value of the pokemons energytype
      *
-     * @return string
+     * @return mixed
      */
     public function getEnergytype()
     {
@@ -165,7 +170,10 @@ class Pokemon
      */
     public function setAttacks(array $attacks)
     {
-        $this->attacks = $attacks;
+
+      foreach($attacks as $key=>$attack) {
+          $this->attacks[$key] = new Attack($attack['name'], $attack['damage']);
+      }
 
         return $this;
     }
@@ -181,23 +189,23 @@ class Pokemon
     }
 
     /**
-     * Set the value of list of the energytypes which the pokemon is weak to
+     * Set the value of energytypes which the pokemon is weak to
      *
-     * @param array $weakness
+     * @param mixed $weakness
      *
      * @return self
      */
-    public function setWeakness(array $weakness)
+    public function setWeakness($weakness)
     {
-        $this->weakness = $weakness;
+        $this->weakness = new Weakness($weakness['name'], $weakness['multiplier']);
 
         return $this;
     }
 
     /**
-     * Get the value of list of the energytypes which the pokemon is weak to
+     * Get the value of energytypes which the pokemon is weak to
      *
-     * @return array
+     * @return mixed
      */
     public function getWeakness()
     {
@@ -205,26 +213,27 @@ class Pokemon
     }
 
     /**
-     * Set the value of list of the energytypes which the pokemon is resistant to
+     * Set the value of energytypes which the pokemon is resistant to
      *
-     * @param array $resistance
+     * @param mixed $resistance
      *
      * @return self
      */
-    public function setResistance(array $resistance)
+    public function setResistance($resistance)
     {
-        $this->resistance = $resistance;
+        $this->resistance = new Resistance($resistance['name'], $resistance['value']);
 
         return $this;
     }
 
     /**
-     * Get the value of list of the energytypes which the pokemon is resistant to
+     * Get the value of energytypes which the pokemon is resistant to
      *
-     * @return array
+     * @return mixed
      */
     public function getResistance()
     {
         return $this->resistance;
     }
+
 }
