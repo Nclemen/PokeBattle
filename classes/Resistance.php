@@ -1,8 +1,6 @@
 <?php
 namespace base;
 
-// use base\Energytype;
-
 class Resistance
 {
   /**
@@ -21,7 +19,7 @@ class Resistance
 
   function __construct($name, $value)
   {
-    $this->energytype = new Energytype($name);
+    $this->energytype = $name;
     $this->value = $value;
   }
 

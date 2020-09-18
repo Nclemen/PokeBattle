@@ -12,18 +12,25 @@ use base\Pokemon;
 
  $pikachu = new Pikachu('chuchu');
  $charmeleon = new Charmeleon('flint');
- echo '<pre>' . print_r($charmeleon->getEnergytype()->getName(), true);
- echo '<pre>' . print_r($pikachu->getResistance()->getValue(), true);
+ // echo '<pre>' . print_r($charmeleon->getEnergytype()->getName(), true);
+ // echo '<pre>' . print_r($pikachu->getResistance()->getValue(), true);
 
  $pikachu->attackPokemon($charmeleon, $pikachu->getAttacks()[0]);
  $charmeleon->attackPokemon($pikachu, $charmeleon->getAttacks()[1]);
 
 
+
+
+
  echo Pokemon::getPopulationHealth();
 
  $pikachu->attackPokemon($charmeleon, $pikachu->getAttacks()[0]);
 
  echo Pokemon::getPopulationHealth();
+
+
+ var_dump($pikachu->getAttacks());
+
 
  // $pikachu->attackPokemon($charmeleon, $pikachu->getAttacks()[0]);
  // var_dump($pikachu->getWeakness());

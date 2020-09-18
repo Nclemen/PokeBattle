@@ -18,7 +18,7 @@ class Pokemon
     /**
      * the pokemons energytype
      *
-     * @var
+     * @var object
      */
     private $energytype;
 
@@ -46,14 +46,14 @@ class Pokemon
     /**
      * energytypes which the pokemon is weak to
      *
-     * @var
+     * @var object
      */
     private $weakness;
 
     /**
      * energytypes which the pokemon is resistant to
      *
-     * @var
+     * @var object
      */
     private $resistance;
 
@@ -112,11 +112,11 @@ class Pokemon
     /**
      * Set the value of the pokemons energytype
      *
-     * @param mixed $energytype
+     * @param object $energytype
      *
      * @return self
      */
-    public function setEnergytype($energytype)
+    public function setEnergytype(object $energytype)
     {
         $this->energytype = $energytype;
 
@@ -126,7 +126,7 @@ class Pokemon
     /**
      * Get the value of the pokemons energytype
      *
-     * @return mixed
+     * @return object
      */
     public function getEnergytype()
     {
@@ -208,11 +208,11 @@ class Pokemon
     /**
      * Set the value of energytypes which the pokemon is weak to
      *
-     * @param mixed $weakness
+     * @param object $weakness
      *
      * @return self
      */
-    public function setWeakness($weakness)
+    public function setWeakness(object $weakness)
     {
         $this->weakness = $weakness;
 
@@ -222,7 +222,7 @@ class Pokemon
     /**
      * Get the value of energytypes which the pokemon is weak to
      *
-     * @return mixed
+     * @return object
      */
     public function getWeakness()
     {
@@ -232,11 +232,11 @@ class Pokemon
     /**
      * Set the value of energytypes which the pokemon is resistant to
      *
-     * @param mixed $resistance
+     * @param object $resistance
      *
      * @return self
      */
-    public function setResistance($resistance)
+    public function setResistance(object $resistance)
     {
         $this->resistance = $resistance;
 
@@ -246,7 +246,7 @@ class Pokemon
     /**
      * Get the value of energytypes which the pokemon is resistant to
      *
-     * @return mixed
+     * @return object
      */
     public function getResistance()
     {

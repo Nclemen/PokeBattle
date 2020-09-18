@@ -18,10 +18,10 @@ class Attack
       */
     private $damage;
 
-    function __construct($attackData)
+    function __construct($name, $damage)
     {
-      $this->name = $attackData['name'];
-      $this->damage = $attackData['damage'];
+      $this->name = $name;
+      $this->damage = $damage;
     }
 
     /**

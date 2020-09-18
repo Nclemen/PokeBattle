@@ -1,8 +1,6 @@
 <?php
 namespace base;
 
-// use base\Energytype;
-
 class Weakness
 {
   /**
@@ -19,9 +17,9 @@ class Weakness
     */
   private $multiplier;
 
-  function __construct($name, $multiplier)
+  function __construct($energytype, $multiplier)
   {
-    $this->energytype = new Energytype($name);
+    $this->energytype = $energytype;
     $this->multiplier = $multiplier;
   }
 
