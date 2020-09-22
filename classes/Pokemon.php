@@ -18,7 +18,7 @@ class Pokemon
     /**
      * the pokemons energytype
      *
-     * @var
+     * @var object
      */
     private $energytype;
 
@@ -46,19 +46,34 @@ class Pokemon
     /**
      * energytypes which the pokemon is weak to
      *
-     * @var
+     * @var object
      */
     private $weakness;
 
     /**
      * energytypes which the pokemon is resistant to
      *
-     * @var
+     * @var object
      */
     private $resistance;
 
-    public function __construct()
+    /**
+    * the amount of living pokemon
+    *
+    * @var
+    */
+    public static $population = 0;
+
+    /**
+     * array of all the created pokemon
+     *
+     * @var
+     */
+    public static $pokemonPc = [];
+
+    public function __construct($name, $energytype, $hitpoints, $attacks, $weakness, $resistance)
     {
+<<<<<<< HEAD
       // $this->name = $name;
       // $this->energytype = new Energytype();
       // $this->hitpoints = $hitpoints;
@@ -70,6 +85,18 @@ class Pokemon
 
     public function attackPokemon($target, $attack){
 
+=======
+      $this->name = $name;
+      $this->energytype = $energytype;
+      $this->hitpoints = $hitpoints;
+      $this->health = $hitpoints;
+      $this->attacks = $attacks;
+      $this->weakness = $weakness;
+      $this->resistance = $resistance;
+
+      ++self::$population;
+      self::$pokemonPc[] = $this;
+>>>>>>> master
     }
 
     /**
@@ -99,13 +126,13 @@ class Pokemon
     /**
      * Set the value of the pokemons energytype
      *
-     * @param mixed $energytype
+     * @param object $energytype
      *
      * @return self
      */
-    public function setEnergytype($energytype)
+    public function setEnergytype(object $energytype)
     {
-        $this->energytype = new Energytype($energytype);
+        $this->energytype = $energytype;
 
         return $this;
     }
@@ -113,7 +140,7 @@ class Pokemon
     /**
      * Get the value of the pokemons energytype
      *
-     * @return mixed
+     * @return object
      */
     public function getEnergytype()
     {
@@ -177,10 +204,7 @@ class Pokemon
      */
     public function setAttacks(object $attacks)
     {
-
-      foreach($attacks as $key=>$attack) {
-          $this->attacks[$key] = new Attack($attack['name'], $attack['damage']);
-      }
+        $this->attacks = $attacks;
 
         return $this;
     }
@@ -198,13 +222,13 @@ class Pokemon
     /**
      * Set the value of energytypes which the pokemon is weak to
      *
-     * @param mixed $weakness
+     * @param object $weakness
      *
      * @return self
      */
-    public function setWeakness($weakness)
+    public function setWeakness(object $weakness)
     {
-        $this->weakness = new Weakness($weakness['name'], $weakness['multiplier']);
+        $this->weakness = $weakness;
 
         return $this;
     }
@@ -212,7 +236,7 @@ class Pokemon
     /**
      * Get the value of energytypes which the pokemon is weak to
      *
-     * @return mixed
+     * @return object
      */
     public function getWeakness()
     {
@@ -222,13 +246,13 @@ class Pokemon
     /**
      * Set the value of energytypes which the pokemon is resistant to
      *
-     * @param mixed $resistance
+     * @param object $resistance
      *
      * @return self
      */
-    public function setResistance($resistance)
+    public function setResistance(object $resistance)
     {
-        $this->resistance = new Resistance($resistance['name'], $resistance['value']);
+        $this->resistance = $resistance;
 
         return $this;
     }
@@ -236,11 +260,73 @@ class Pokemon
     /**
      * Get the value of energytypes which the pokemon is resistant to
      *
-     * @return mixed
+     * @return object
      */
     public function getResistance()
     {
         return $this->resistance;
     }
+
+
+
+    // battle methods
+
+    public function attackPokemon($target, $attack){
+      $dmgdlt = $attack->getDamage();
+
+      if ($target->getWeakness()->getEnergytype()->getName() == $this->getEnergytype()->getName()) {
+        $dmgdlt = $dmgdlt * $target->getWeakness()->getMultiplier();
+      }
+
+      if ($target->getResistance()->getEnergytype()->getName() == $this->getEnergytype()->getName()) {
+        $dmgdlt = $dmgdlt - $target->getResistance()->getValue();
+      }
+
+      $target->setHealth($target->getHealth() - $dmgdlt);
+
+      $this->battleLog($target, $attack, $dmgdlt);
+
+      $target->checkHealth($target);
+    }
+
+
+
+    public function battleLog($target, $attack, $dmgdlt){
+      print_r(
+        '<pre>' . $this->getName() .  ' attacks ' . $target->getName() . ' using ' . $attack->getName() . '</pre>'.
+        '<pre>' . $target->getName() . ' receives ' . $dmgdlt . ' points of damage </pre>'.
+        '<pre>' . $target->getName() . 's health = ' . $target->getHealth() .
+        '</br>' . $this->getName() . 's health = ' . $this->getHealth() . '</pre>'
+        );
+    }
+
+    public function checkHealth($pokemon){
+      if ($pokemon->getHealth() <=  0) {
+        --self::$population;
+        print_r('<pre>' . $pokemon->getName() . ' has fainted</pre>');
+      }
+    }
+
+
+    // statistics methods
+
+
+    public static function getPopulation(){
+      return self::$population;
+    }
+
+    public static function getPopulationHealth(){
+      $total = 0;
+
+      foreach(self::$pokemonPc as $pokemon){
+          $hp = $pokemon->getHealth();
+          if (!($hp <= 0)){
+                $total+=$hp;
+          }
+      }
+
+      return "the average population health is " . $total/=self::$population;
+    }
+
 
 }

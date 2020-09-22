@@ -1,8 +1,6 @@
 <?php
 namespace base;
-/**
- *
- */
+
 class Attack
 {
 
