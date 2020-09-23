@@ -10,7 +10,7 @@ class Energytype
   private $name;
 
   /**
-   * constructer for energytype
+   * constructor for energytype
    *
    * @param string $name is set by calling the set const above
    */

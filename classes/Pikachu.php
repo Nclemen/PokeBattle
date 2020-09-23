@@ -2,7 +2,11 @@
 
 class Pikachu extends Pokemon
 {
-
+  /**
+   * constructor for pikachu
+   * 
+   * @param string $name name of the pikachu
+   */
   public function __construct($name)
   {
     $name = $name;

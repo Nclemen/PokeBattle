@@ -7,7 +7,7 @@ class Weakness
   private $multiplier;
 
   /**
-   * constructer for energytype
+   * constructor for energytype
    *
    * @param object $energytype is and object of the class Energytype
    * @param object $multiplier is an integer

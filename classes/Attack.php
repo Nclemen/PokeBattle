@@ -17,6 +17,12 @@ class Attack
       */
     private $damage;
 
+    /**
+     * constructor for attack
+     * 
+     * @param string $name name of the attack
+     * @param int $damage the amount of damage the attack does
+     */
     function __construct($name, $damage)
     {
       $this->name = $name;

@@ -2,7 +2,11 @@
 
 class Charmeleon extends Pokemon
 {
-
+  /**
+   * constructor for charmeleon
+   * 
+   * @param string $name name of the charmeleon
+   */
   public function __construct($name)
   {
     $name = $name;

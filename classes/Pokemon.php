@@ -21,6 +21,16 @@ class Pokemon
 
     private static $pokemonPc = [];
 
+    /**
+     * constructor for pokemon
+     *
+     * @param string $name string
+     * @param object $energytype  energytype
+     * @param int $hitpoints hitpoints
+     * @param object $attacks array of Attack instances
+     * @param object $weakness instance of Weakness
+     * @param object $resistance instance of Resistance
+     */
     public function __construct($name, $energytype, $hitpoints, $attacks, $weakness, $resistance)
     {
       $this->name = $name;
