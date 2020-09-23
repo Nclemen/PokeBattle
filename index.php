@@ -8,7 +8,7 @@
  $charmeleon->attackPokemon($pikachu, $charmeleon->getAttacks()[1]);
 
  echo Pokemon::getPopulationHealth();
-
- $pikachu->attackPokemon($charmeleon, $pikachu->getAttacks()[0]);
-
+ //
+ // $pikachu->attackPokemon($charmeleon, $pikachu->getAttacks()[0]);
+ //
  echo Pokemon::getPopulationHealth();

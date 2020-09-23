@@ -136,13 +136,19 @@ public function attack($target, $attack){
     print_r($this->battleLog($target->getName()));
 
     print_r('<pre>' . $target->getName() . "</br>" . $target->getHealth() . '</pre>');
+
     $target->dmgTkn($attack,$pokemon->getEnergytype());
+
     if ($target->getHealth() <= 0){
+
         $target->fainted();
         print_r('<pre>' . $target->getName() . "</br>" . $target->getHealth() . '</pre>');
         print_r('<pre>' . $target->getName() . " Has fainted" . '</pre>');
+
     } else {
+
     print_r('<pre>' . $target->getName() . "</br>" . $target->getHealth() . '</pre>');
+
     }
 }
 
