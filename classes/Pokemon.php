@@ -257,6 +257,13 @@ class Pokemon
 
     // battle methods
 
+    /**
+     *
+     *
+     * @param object $target an pokemon object that is the target of the attack
+     * @param object $attack an object of attack that is being used to attack
+     *
+     */
     public function attackPokemon($target, $attack){
       $dmgdlt = $attack->getDamage();
 
@@ -276,7 +283,14 @@ class Pokemon
     }
 
 
-
+    /**
+     * function to log the battle that is going on
+     *
+     * @param object $target the target that is being attacked
+     * @param object $attack the attack being used
+     * @param object $dmgdlt the amount of damage being done
+     *
+     */
     public function battleLog($target, $attack, $dmgdlt){
       print_r(
         '<pre>' . $this->getName() .  ' attacks ' . $target->getName() . ' using ' . $attack->getName() . '</pre>'.
