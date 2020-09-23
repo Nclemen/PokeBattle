@@ -2,68 +2,24 @@
 
 class Pokemon
 {
-    /**
-     * the name of the pokemon
-     *
-     * @var string
-     */
+
     private $name;
 
-    /**
-     * the pokemons energytype
-     *
-     * @var object
-     */
     private $energytype;
 
-    /**
-     * the maximum amount of hitpoints of the pokemon
-     *
-     * @var int
-     */
     private $hitpoints;
 
-    /**
-     * the current amount of healthpoints of the pokemon
-     *
-     * @var int
-     */
     private $health;
 
-    /**
-     * list of pokemons attacks
-     *
-     * @var array
-     */
     private $attacks;
 
-    /**
-     * energytypes which the pokemon is weak to
-     *
-     * @var object
-     */
     private $weakness;
 
-    /**
-     * energytypes which the pokemon is resistant to
-     *
-     * @var object
-     */
     private $resistance;
 
-    /**
-    * the amount of living pokemon
-    *
-    * @var
-    */
-    public static $population = 0;
+    private static $population = 0;
 
-    /**
-     * array of all the created pokemon
-     *
-     * @var
-     */
-    public static $pokemonPc = [];
+    private static $pokemonPc = [];
 
     public function __construct($name, $energytype, $hitpoints, $attacks, $weakness, $resistance)
     {
@@ -84,7 +40,7 @@ class Pokemon
      *
      * @param string $name
      *
-     * @return self
+     * @return object returns instance
      */
     public function setName($name)
     {
@@ -104,20 +60,6 @@ class Pokemon
     }
 
     /**
-     * Set the value of the pokemons energytype
-     *
-     * @param object $energytype
-     *
-     * @return self
-     */
-    public function setEnergytype(object $energytype)
-    {
-        $this->energytype = $energytype;
-
-        return $this;
-    }
-
-    /**
      * Get the value of the pokemons energytype
      *
      * @return object
@@ -125,20 +67,6 @@ class Pokemon
     public function getEnergytype()
     {
         return $this->energytype;
-    }
-
-    /**
-     * Set the value of the maximum amount of hitpoints of the pokemon
-     *
-     * @param int $hitpoints
-     *
-     * @return self
-     */
-    public function setHitpoints($hitpoints)
-    {
-        $this->hitpoints = $hitpoints;
-
-        return $this;
     }
 
     /**
@@ -156,7 +84,7 @@ class Pokemon
      *
      * @param int $health
      *
-     * @return self
+     * @return object returns instance
      */
     public function setHealth($health)
     {
@@ -176,20 +104,6 @@ class Pokemon
     }
 
     /**
-     * Set the value of list of pokemons attacks
-     *
-     * @param object $attacks
-     *
-     * @return self
-     */
-    public function setAttacks(object $attacks)
-    {
-        $this->attacks = $attacks;
-
-        return $this;
-    }
-
-    /**
      * Get the value of list of pokemons attacks
      *
      * @return array
@@ -200,20 +114,6 @@ class Pokemon
     }
 
     /**
-     * Set the value of energytypes which the pokemon is weak to
-     *
-     * @param object $weakness
-     *
-     * @return self
-     */
-    public function setWeakness(object $weakness)
-    {
-        $this->weakness = $weakness;
-
-        return $this;
-    }
-
-    /**
      * Get the value of energytypes which the pokemon is weak to
      *
      * @return object
@@ -221,20 +121,6 @@ class Pokemon
     public function getWeakness()
     {
         return $this->weakness;
-    }
-
-    /**
-     * Set the value of energytypes which the pokemon is resistant to
-     *
-     * @param object $resistance
-     *
-     * @return self
-     */
-    public function setResistance(object $resistance)
-    {
-        $this->resistance = $resistance;
-
-        return $this;
     }
 
     /**
@@ -257,58 +143,69 @@ class Pokemon
      * @param object $target an pokemon object that is the target of the attack
      * @param object $attack an object of attack that is being used to attack
      *
+     * @return array returns an array that contains data of the attack that just happend
      */
     public function attackPokemon($target, $attack){
+
+      $dmg = $target->receiveAttack($attack, $this);
+
+      $data = ['target'=>$target
+              ,'attacker'=>$this
+              ,'attack'=>$attack
+              ,'damage'=>$dmg];
+
+      return $data ;
+    }
+
+
+    public function receiveAttack($attack, $attacker)
+    {
       $dmgdlt = $attack->getDamage();
 
-      if ($target->getWeakness()->getEnergytype()->getName() == $this->getEnergytype()->getName()) {
-        $dmgdlt = $dmgdlt * $target->getWeakness()->getMultiplier();
+      if ($this->getWeakness()->getEnergytype()->getName() == $attacker->getEnergytype()->getName()) {
+        $dmgdlt = $dmgdlt * $this->getWeakness()->getMultiplier();
       }
 
-      if ($target->getResistance()->getEnergytype()->getName() == $this->getEnergytype()->getName()) {
-        $dmgdlt = $dmgdlt - $target->getResistance()->getValue();
+      if ($this->getResistance()->getEnergytype()->getName() == $this->getEnergytype()->getName()) {
+        $dmgdlt = $dmgdlt - $this->getResistance()->getValue();
       }
 
-      $target->setHealth($target->getHealth() - $dmgdlt);
+      $this->setHealth($this->getHealth() - $dmgdlt);
 
-      $this->battleLog($target, $attack, $dmgdlt);
+      $this->checkHealth();
 
-      $target->checkHealth($target);
+      return $dmgdlt;
     }
-
 
     /**
-     * function to log the battle that is going on
+     * checks if the pokemon is alive
      *
-     * @param object $target the target that is being attacked
-     * @param object $attack the attack being used
-     * @param object $dmgdlt the amount of damage being done
-     *
+     * @return int returns the health of the pokemon
      */
-    public function battleLog($target, $attack, $dmgdlt){
-      print_r(
-        '<pre>' . $this->getName() .  ' attacks ' . $target->getName() . ' using ' . $attack->getName() . '</pre>'.
-        '<pre>' . $target->getName() . ' receives ' . $dmgdlt . ' points of damage </pre>'.
-        '<pre>' . $target->getName() . 's health = ' . $target->getHealth() .
-        '</br>' . $this->getName() . 's health = ' . $this->getHealth() . '</pre>'
-        );
-    }
-
-    public function checkHealth($pokemon){
-      if ($pokemon->getHealth() <=  0) {
+    public function checkHealth(){
+      if ($this->getHealth() <=  0) {
         --self::$population;
-        print_r('<pre>' . $pokemon->getName() . ' has fainted</pre>');
       }
+      return $this->getHealth();
     }
 
 
     // statistics methods
 
-
+    /**
+     * get the amount of all pokemon
+     *
+     * @return int returns the value of population
+     */
     public static function getPopulation(){
       return self::$population;
     }
 
+    /**
+     * get the average health of all living pokemon
+     *
+     * @return int returns the average health of all living pokemon
+     */
     public static function getPopulationHealth(){
       $total = 0;
 
@@ -319,8 +216,16 @@ class Pokemon
           }
       }
 
-      return "the average population health is " . $total/=self::$population;
+      return $total/=self::$population;
     }
 
-
+    /**
+     * get array of all the created pokemon
+     *
+     * @return array
+     */
+    public function getPokemonPc()
+    {
+      return self::$pokemonPc;
+    }
 }

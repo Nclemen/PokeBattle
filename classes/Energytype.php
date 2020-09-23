@@ -3,24 +3,20 @@
 class Energytype
 {
 
-  /**
-    * the name of the energytype
-    *
-    * @var string
-    */
+  const LIGHTNING = 'Lightning';
+  const FIRE = 'Fire';
+  const WATER = 'Water';
+
   private $name;
 
   /**
-    * the set value of the energytype
-    *
-    * @var int
-    */
-  private $value;
-
+   * constructer for energytype
+   *
+   * @param string $name is set by calling the set const above
+   */
   function __construct($name)
   {
     $this->name = $name;
-    // $this->value = $value;
   }
 
   /**
@@ -30,40 +26,5 @@ class Energytype
     */
   public function getName(){
     return $this->name;
-  }
-
-  /**
-    * function to set damage
-    *
-    * @var string $name
-    *
-    * @return self
-    */
-  public function setName($name){
-    $this->name = $name;
-
-    return $this;
-  }
-
-  /**
-    * function to get attack damage
-    *
-    * @return int
-    */
-  public function getValue(){
-    return $this->damage;
-  }
-
-  /**
-    * function to set damage
-    *
-    * @var int $value
-    *
-    * @return self
-    */
-  public function setValue($value){
-    $this->value = $value;
-
-    return $this;
   }
 }
