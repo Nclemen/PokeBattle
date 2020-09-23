@@ -1,10 +1,4 @@
 <?php
-namespace base;
-
-require 'Energytype.php';
-require 'Attack.php';
-require 'Weakness.php';
-require 'Resistance.php';
 
 class Pokemon
 {
@@ -73,19 +67,6 @@ class Pokemon
 
     public function __construct($name, $energytype, $hitpoints, $attacks, $weakness, $resistance)
     {
-<<<<<<< HEAD
-      // $this->name = $name;
-      // $this->energytype = new Energytype();
-      // $this->hitpoints = $hitpoints;
-      // code ...
-
-      foreach ()
-
-    }
-
-    public function attackPokemon($target, $attack){
-
-=======
       $this->name = $name;
       $this->energytype = $energytype;
       $this->hitpoints = $hitpoints;
@@ -96,7 +77,6 @@ class Pokemon
 
       ++self::$population;
       self::$pokemonPc[] = $this;
->>>>>>> master
     }
 
     /**
