@@ -1,11 +1,5 @@
 <?php
 
-use base\Pokemon;
-use base\Energytype;
-use base\Attack;
-use base\Weakness;
-use base\Resistance;
-
 class Charmeleon extends Pokemon
 {
 

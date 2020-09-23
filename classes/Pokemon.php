@@ -1,10 +1,4 @@
 <?php
-namespace base;
-
-require 'Energytype.php';
-require 'Attack.php';
-require 'Weakness.php';
-require 'Resistance.php';
 
 class Pokemon
 {
@@ -184,11 +178,11 @@ class Pokemon
     /**
      * Set the value of list of pokemons attacks
      *
-     * @param array $attacks
+     * @param object $attacks
      *
      * @return self
      */
-    public function setAttacks(array $attacks)
+    public function setAttacks(object $attacks)
     {
         $this->attacks = $attacks;
 
